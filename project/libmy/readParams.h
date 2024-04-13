@@ -3,16 +3,37 @@
 
 #include <yaml-cpp/yaml.h>
 
+#include <glog/logging.h>
+
 template <typename Scalar>
-static void readParam(YAML::Node config_node, Scalar &value, std::string &field)
+static bool readParam(YAML::Node config_node, Scalar &value, std::string field, bool force = true)
 {
   if (config_node)
   {
-    value = config_node.as<Scalar>( );
+    try
+    {
+      value = config_node.as<Scalar>( );
+    }
+    catch (const YAML::BadConversion &e)
+    {
+      // Handle error
+      LOG(WARNING) << "  failed to read " << field;
+      LOG(FATAL) << "Error parsing " << typeid(value).name( ) << ": " << e.what( );
+      return false;
+    }
+    return true;
   }
   else
   {
-    LOG(FATAL) << "  failed to read " << field;
+    if (force)
+    {
+      LOG(FATAL) << "  failed to read " << field;
+    }
+    else
+    {
+      LOG(WARNING) << "  failed to read " << field;
+    }
+    return false;
   }
 }
 
