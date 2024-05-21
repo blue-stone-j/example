@@ -1,3 +1,8 @@
 project/build
 ros/build
 ros/devel
+
+build
+devel
+install
+.vscode

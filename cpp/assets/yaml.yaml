@@ -1,0 +1,5 @@
+root1:
+  value: 9.80511
+  str: "string"
+  array: [1.0, 2.0, 3.0]
+root2: 5.5

@@ -176,3 +176,51 @@ find . -type d -name .git -prune -exec rm -r {} \;
 ```Bash
 rm -rf `find . -type d -name a`
 ```
+
+### 10 递归处理文件
+```bash
+#!/bin/bash
+
+# 指定需要搜索的根目录，如果运行脚本时不指定目录，则默认为当前目录
+root_dir="${1:-.}"
+
+# 使用find命令在指定目录及其子目录下查找所有.webp文件
+find "$root_dir" -type f -name "*.webp" -exec sh -c '
+  for img_path; do
+    # 使用dwebp工具将webp转换为png
+    dwebp "$img_path" -o "${img_path%.webp}.png"
+    
+    # 如果转换成功，则删除原webp文件
+    if [ $? -eq 0 ]; then
+      rm "$img_path"
+    fi
+  done
+' sh {} +
+```
+
+|命令|解释|
+|---|---|
+|`-exec`|这个选项后跟一个命令模板，find 命令将为每个找到的文件执行这个命令。在这个脚本中，命令模板包括一个小型的 sh 脚本|
+|`sh -c`|这个命令启动一个新的shell，并执行后面单引号中的命令。这允许对每个找到的文件执行多个命令|
+|代码块' ... '|一个小型的shell脚本，它为每个传递给它的文件路径执行一系列命令|
+|`for img_path; do ... done`|这是一个循环，遍历所有传递给shell脚本的文件路径。在这个例子中，每个路径都是一个 .webp 文件|
+|`{}`|这是 find 命令的占位符，代表当前找到的文件路径。每次 find 命令找到一个符合条件的文件时，都会将这个文件的路径替换到 {} 的位置|
+|`+`|这个符号告诉 `find` 命令将多个找到的文件路径聚集起来，一次调用 -exec 后的命令来处理这些路径，而不是对每个文件单独调用一次命令。这提高了效率，因为它减少了需要启动的shell的数量|
+
+### 11 统计文件名
+```bash
+ls | while read line
+do
+  file=$line
+  if echo $file | grep -q -E '\.bag$'
+  then
+    if [ 18 = `echo ${#file}` ] 
+      then
+      # time=`rosbag info $file | grep start`
+      # str=`date -d @${time: 0-14: 13} "+%Y-%m-%d %H:%M:%S"`
+      time=${file: 0: 14}
+      echo $time >> date_t.txt
+    fi
+  fi
+done
+```

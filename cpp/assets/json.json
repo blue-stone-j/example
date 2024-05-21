@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "includePath": [
+        "/usr/include/**"
+      ],
+      "name": "cpp"
+    },
+    {
+      "includePath": [
+        "/opt/ros/noetic/include/**"
+      ],
+      "name": "py"
+    }
+  ],
+  "version": 4
+}
