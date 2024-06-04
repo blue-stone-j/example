@@ -15,26 +15,65 @@ set(CMAKE_CXX_FLAGS "-std=c++17")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g -pthread")
 
 include(cmake/glog.cmake)
-include(cmake/YAML.cmake)
 
 #
 include_directories(
   include
   ${PROJECT_INCLUDE_DIR}
-  ${JSONCPP_INCLUDE_DIRS}
 )
-find_package(PkgConfig)
-pkg_check_modules(JSONCPP jsoncpp)
 
-find_package(Lua REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(JSONCPP jsoncpp)
+pkg_check_modules(YAML_CPP yaml-cpp)
+
+find_package(Lua)
 
 # ##########
 # # Build ##
 # ##########
-add_executable(cppio src/cppio.cpp)
-target_include_directories(cppio PRIVATE ${LUA_INCLUDE_DIR})
-target_link_libraries(cppio
-  ${YAML_CPP_LIBRARIES}
-  ${JSONCPP_LIBRARIES}
-  ${LUA_LIBRARIES}
-)
+# add_executable(cppio src/cppio.cpp)
+# target_include_directories(cppio PRIVATE ${LUA_INCLUDE_DIR} ${JSONCPP_INCLUDE_DIRS} ${YAML_CPP_INCLUDEDIR})
+# target_link_libraries(cppio ${YAML_CPP_LIBRARIES} ${JSONCPP_LIBRARIES} ${LUA_LIBRARIES})
+
+add_executable(string_huff src/string_huff.cpp)
+
+add_executable(multi_type src/multi_type.cpp)
+
+add_executable(inverse_array src/inverse_array.cpp)
+
+add_executable(union src/union.cpp)
+
+add_executable(delete_element_array src/delete_element_array.cpp)
+
+add_executable(cout src/cout.cpp)
+
+add_executable(longest_string src/longest_string.cpp)
+
+add_executable(atexit src/atexit.cpp)
+
+add_executable(virtual_inherit src/virtual_inherit.cpp)
+
+add_executable(cmatrix src/cmatrix.cpp)
+
+add_executable(template_func src/template_func.cpp)
+
+add_executable(typeid src/typeid.cpp)
+
+add_executable(type_conversion src/type_conversion.cpp)
+
+add_executable(template_class_inherit src/template_class_inherit.cpp)
+
+add_executable(container src/container.cpp)
+
+add_executable(global_varible src/global_varible.cpp)
+
+add_executable(try_catch src/try_catch.cpp)
+
+add_executable(matrix src/matrix.cpp)
+
+add_executable(greatest_common_divisor src/greatest_common_divisor.cpp)
+
+add_executable(prime_number src/prime_number.cpp)
+
+# add_executable(drop_sea src/drop_sea.cpp)
+# add_executable(main src/main.cpp)

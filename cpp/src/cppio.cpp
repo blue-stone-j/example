@@ -2,13 +2,14 @@
 input/read and output/write
 1. std::cout
 2. std::cin
-3. getline()
-4. yaml
-5. json
-6. xml
-7. csv
-8. ini
-9. lua
+3. fstream
+4. getline()
+5. yaml
+6. json
+7. xml
+8. csv
+9. ini
+10. lua
  */
 
 #include <fstream>
@@ -46,6 +47,9 @@ int main()
     {
       char m[20];
       std::cin.getline(m, 5); // 接收一个字符串，可以接收空格并输出
+
+      	while(1)
+	{	std::cout<<char(getchar())<<std::endl;}
     }
 
     if (0)
@@ -53,6 +57,86 @@ int main()
       std::string str;
       getline(std::cin, str);
       std::cout << str << std::endl;
+    }
+
+    if (0)
+    {
+      std::string str;
+      getline(std::cin, str, '$'); // 接收字符直到遇到$
+      std::cout << str << std::endl;
+    }
+  }
+
+  // cout
+  if (1)
+  {
+    {
+      double a = 1.0 / 3;                                                          // 浮点数
+      std::cout << "1/3的小数表示为：" << std::setprecision(17) << a << std::endl; // 设置精度
+    }
+    {
+      int a = 123; // 整数123
+      std::cout << "默认为十进制输出：" << a << std::endl;
+      std::cout << std::hex << "十六进制小写输出：" << a << std::endl;
+      std::cout << std::setiosflags(std::ios::uppercase) << std::hex << "十六进制大写输出：" << a << std::endl;
+      std::cout << std::oct << "八进制输出：" << a << std::endl;
+    }
+    {
+      std::string str1 = "Hello World";                                       // 字符串1
+      std::cout << std::setiosflags(std::ios::left) << std::setw(20) << str1; // 宽度20}
+    }
+
+    if (0)
+    {
+      std::ifstream fin("in.txt");
+      if (fin.is_open())
+      {
+        char ch[20]  = {'a'}; // C风格字符串
+        char ch1[20] = {'a'};
+        for (int i = 0; i < 12; i++)
+        {
+          fin.get(ch[i]); // 一个个读取，共读12个
+          std::cout << ch[i];
+        }
+        std::cout << std::endl;
+        fin.getline(ch1, 20); // 读取第2行
+        std::cout << ch1 << std::endl;
+
+        if (fin.eof()) // 到达文件尾
+        {
+          std::cout << "已到文件尾" << std::endl;
+        }
+        else // 没到尾
+        {
+          std::cout << "没到文件尾" << std::endl;
+          fin >> ch;      // 读取一个字符
+          if (fin.good()) // 读取成功
+          {
+            std::cout << "读取成功，字符为：" << ch << std::endl;
+          }
+          else // 读取失败
+          {
+            std::cout << "读取失败" << std::endl;
+          }
+        }
+
+        fin.seekg(0, std::ios::end);     // 设置文件指针到文件流尾部
+        std::streampos ps = fin.tellg(); // 读取文件指针的当前位置
+        std::cout << "文件长度为：" << ps << std::endl;
+        fin.close(); // 关闭文件流
+      }
+
+      std::ofstream out("out.txt", std::ios::out | std::ios::in); // 打开文件out.txt
+      if (out.is_open())                                          // 打开成功
+      {
+        out.seekp(21, std::ios::beg); // 移动文件指针
+        out.write(" World", 6);       // 写入
+      }
+      else
+      {
+        std::cout << "out.txt不存在" << std::endl;
+      }
+      out.close(); // 关闭
     }
   }
 
@@ -279,7 +363,7 @@ int main()
   if (0) // ini-lib
   {}
 
-  if (1) // lua
+  if (0) // lua
   {
     lua_State *L = luaL_newstate(); // 创建一个新的Lua状态机
     luaL_openlibs(L);               // 打开所有标准的Lua库
