@@ -12,14 +12,19 @@ static bool readParam(YAML::Node config_node, Scalar &value, std::string field, 
   {
     try
     {
-      value = config_node.as<Scalar>( );
+      value = config_node.as<Scalar>();
     }
     catch (const YAML::BadConversion &e)
     {
       // Handle error
       LOG(WARNING) << "  failed to read " << field;
-      LOG(FATAL) << "Error parsing " << typeid(value).name( ) << ": " << e.what( );
+      LOG(FATAL) << "Error parsing " << typeid(value).name() << ": " << e.what();
       return false;
+    }
+    catch (YAML::TypedBadConversion<std::string> &e) // TypedBadConversion是模板类，读取什么类型的参数就传入什么类型
+    {
+      LOG(WARNING) << "  failed to read " << field;
+      LOG(FATAL) << "Error parsing " << typeid(value).name() << ": " << e.what();
     }
     return true;
   }
