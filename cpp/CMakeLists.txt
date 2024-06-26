@@ -34,7 +34,6 @@ find_package(Lua)
 # add_executable(cppio src/cppio.cpp)
 # target_include_directories(cppio PRIVATE ${LUA_INCLUDE_DIR} ${JSONCPP_INCLUDE_DIRS} ${YAML_CPP_INCLUDEDIR})
 # target_link_libraries(cppio ${YAML_CPP_LIBRARIES} ${JSONCPP_LIBRARIES} ${LUA_LIBRARIES})
-
 add_executable(string_huff src/string_huff.cpp)
 
 add_executable(multi_type src/multi_type.cpp)
@@ -75,5 +74,14 @@ add_executable(greatest_common_divisor src/greatest_common_divisor.cpp)
 
 add_executable(prime_number src/prime_number.cpp)
 
-# add_executable(drop_sea src/drop_sea.cpp)
+add_executable(maze src/maze.cpp)
+
+add_executable(bag01 src/dynamic_programming/bag/bag01.cpp)
+
+add_executable(backtrack1 src/backtrack1.cpp)
+
+add_executable(backtrack2 src/backtrack2.cpp)
+
+add_executable(backtrack2 src/backtrack2.cpp)
+
 # add_executable(main src/main.cpp)
