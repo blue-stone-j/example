@@ -48,8 +48,10 @@ int main()
       char m[20];
       std::cin.getline(m, 5); // 接收一个字符串，可以接收空格并输出
 
-      	while(1)
-	{	std::cout<<char(getchar())<<std::endl;}
+      while (1)
+      {
+        std::cout << char(getchar()) << std::endl;
+      }
     }
 
     if (0)
@@ -266,12 +268,28 @@ int main()
       int lineInd = 0;
       while (std::getline(fin, line))
       {
-        std::stringstream ss;
-        ss << line;
-        std::vector<double> vec(3);
-        ss >> vec[0] >> vec[1] >> vec[2];
-        vecs.push_back(vec);
-        lineInd++;
+        if (0)
+        {
+          std::stringstream ss;
+          ss << line;
+          std::vector<double> vec(3);
+          ss >> vec[0] >> vec[1] >> vec[2];
+          vecs.push_back(vec);
+          lineInd++;
+        }
+        else
+        {
+          std::string token;
+          std::istringstream tokenStream(line);
+          char delimiter = ' ';
+          std::vector<double> vec;
+          while (std::getline(tokenStream, token, delimiter))
+          {
+            vec.push_back(std::stof(token));
+          }
+          vecs.push_back(vec);
+          lineInd++;
+        }
       }
       fin.close();
     }
