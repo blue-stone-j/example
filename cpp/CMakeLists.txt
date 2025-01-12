@@ -34,54 +34,47 @@ find_package(Lua)
 # add_executable(cppio src/cppio.cpp)
 # target_include_directories(cppio PRIVATE ${LUA_INCLUDE_DIR} ${JSONCPP_INCLUDE_DIRS} ${YAML_CPP_INCLUDEDIR})
 # target_link_libraries(cppio ${YAML_CPP_LIBRARIES} ${JSONCPP_LIBRARIES} ${LUA_LIBRARIES})
-add_executable(string_huff src/string_huff.cpp)
 
-add_executable(multi_type src/multi_type.cpp)
+# Define a function to get all source files and create executables
+function(create_executables)
+  # Get all .cpp files
+  file(GLOB_RECURSE CPP_FILES "${CMAKE_SOURCE_DIR}/*.cpp")
 
-add_executable(inverse_array src/inverse_array.cpp)
+  # Define the file(s) to exclude
+  set(EXCLUDE_FILE "${CMAKE_SOURCE_DIR}/src/cppio.cpp")
 
-add_executable(union src/union.cpp)
+  # Remove the excluded file(s) from the list
+  list(REMOVE_ITEM CPP_FILES ${EXCLUDE_FILE})
 
-add_executable(delete_element_array src/delete_element_array.cpp)
+  # Iterate through each .cpp file
+  foreach(CPP_FILE ${CPP_FILES})
+    # Get the relative path and filename without extension
+    file(RELATIVE_PATH RELATIVE_PATH ${CMAKE_SOURCE_DIR} ${CPP_FILE})
+    get_filename_component(FILENAME_WE ${CPP_FILE} NAME_WE)
 
-add_executable(cout src/cout.cpp)
+    # Get the directory part of the relative path
+    get_filename_component(DIRNAME ${RELATIVE_PATH} DIRECTORY)
 
-add_executable(longest_string src/longest_string.cpp)
+    # Check if DIRNAME is empty
+    if(DIRNAME STREQUAL "")
+      set(DIRNAME_SAFE "")
+    else()
+      # Replace '/' or '\' in the directory name with '_'
+      string(REPLACE "/" "_" DIRNAME_SAFE ${DIRNAME})
+      string(REPLACE "\\" "_" DIRNAME_SAFE ${DIRNAME_SAFE})
+    endif()
 
-add_executable(atexit src/atexit.cpp)
+    # Form the executable name
+    if(DIRNAME_SAFE STREQUAL "")
+      set(EXECUTABLE_NAME ${FILENAME_WE})
+    else()
+      set(EXECUTABLE_NAME "${DIRNAME_SAFE}_${FILENAME_WE}")
+    endif()
 
-add_executable(virtual_inherit src/virtual_inherit.cpp)
+    # Add executable target
+    add_executable(${EXECUTABLE_NAME} ${CPP_FILE})
+  endforeach()
+endfunction()
 
-add_executable(cmatrix src/cmatrix.cpp)
-
-add_executable(template_func src/template_func.cpp)
-
-add_executable(typeid src/typeid.cpp)
-
-add_executable(type_conversion src/type_conversion.cpp)
-
-add_executable(template_class_inherit src/template_class_inherit.cpp)
-
-add_executable(container src/container.cpp)
-
-add_executable(global_varible src/global_varible.cpp)
-
-add_executable(try_catch src/try_catch.cpp)
-
-add_executable(matrix src/matrix.cpp)
-
-add_executable(greatest_common_divisor src/greatest_common_divisor.cpp)
-
-add_executable(prime_number src/prime_number.cpp)
-
-add_executable(maze src/maze.cpp)
-
-add_executable(bag01 src/dynamic_programming/bag/bag01.cpp)
-
-add_executable(backtrack1 src/backtrack1.cpp)
-
-add_executable(backtrack2 src/backtrack2.cpp)
-
-add_executable(backtrack2 src/backtrack2.cpp)
-
-# add_executable(main src/main.cpp)
+# Call the function to create executables
+create_executables()
