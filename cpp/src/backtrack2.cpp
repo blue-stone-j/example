@@ -1,7 +1,6 @@
 // 该代码为回溯法的 BFS 实现
 #include <cstdio>
 #include <cstring>
-#include <iostream>
 #include <queue>
 
 int n, m, k, x, y, a, b, ans;
@@ -18,8 +17,8 @@ oo sa;
 void bfs()
 {
   std::queue<oo> q;
-  sa.x = x;
-  sa.y = y;
+  sa.x          = x;
+  sa.y          = y;
   sa.used[x][y] = 1;
   q.push(sa);
   // BFS队列
@@ -52,11 +51,11 @@ void bfs()
 
 int main()
 {
-  scanf("%d%d%d", &n, &m, &k);
-  scanf("%d%d%d%d", &x, &y, &a, &b);
+  [[maybe_unused]] int result = scanf("%d%d%d", &n, &m, &k);
+  result                      = scanf("%d%d%d%d", &x, &y, &a, &b);
   for (int i = 1, aa, bb; i <= k; i++)
   {
-    scanf("%d%d", &aa, &bb);
+    result      = scanf("%d%d", &aa, &bb);
     vis[aa][bb] = 1; // 障碍位置不可通过
   }
   bfs();

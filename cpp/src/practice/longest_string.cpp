@@ -2,7 +2,9 @@
 #include <cctype>
 #include <iostream>
 #include <cstring>
+
 #define M 1000
+
 const char *extra = "$";
 int main()
 {
@@ -40,7 +42,7 @@ int main()
     std::cout << ch[i];
   }
   std::cout << std::endl;
-  delete ch;
+  delete[] ch;
   ch = NULL;
 
   return 0;

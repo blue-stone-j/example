@@ -24,37 +24,37 @@ bool Cal(int n, double *number, std::string *equation)
     for (int j = i + 1; j < n; j++)
     {
       double a, b;
-      std::string expa, expb;
+      std::string exp_a, exp_b;
       a = number[i];
       b = number[j];
       // 挪动后面有效数字
       number[j]   = number[n - 1];
-      expa        = equation[i];
-      expb        = equation[j];
+      exp_a       = equation[i];
+      exp_b       = equation[j];
       equation[j] = equation[n - 1];
       // a+b
-      equation[i] = '(' + expa + '+' + expb + ')';
+      equation[i] = '(' + exp_a + '+' + exp_b + ')';
       number[i]   = a + b;
       if (Cal(n - 1, number, equation))
       {
         return true;
       }
       // a-b
-      equation[i] = '(' + expa + '-' + expb + ')';
+      equation[i] = '(' + exp_a + '-' + exp_b + ')';
       number[i]   = a - b;
       if (Cal(n - 1, number, equation))
       {
         return true;
       }
       // b-a
-      equation[i] = '(' + expb + '-' + expa + ')';
+      equation[i] = '(' + exp_b + '-' + exp_a + ')';
       number[i]   = b - a;
       if (Cal(n - 1, number, equation))
       {
         return true;
       }
       //(a*b)
-      equation[i] = '(' + expa + '*' + expb + ')';
+      equation[i] = '(' + exp_a + '*' + exp_b + ')';
       number[i]   = a * b;
       if (Cal(n - 1, number, equation))
       {
@@ -63,7 +63,7 @@ bool Cal(int n, double *number, std::string *equation)
       //(a/b)
       if (b != 0) // 除数不为0
       {
-        equation[i] = '(' + expa + '/' + expb + ')';
+        equation[i] = '(' + exp_a + '/' + exp_b + ')';
         number[i]   = a / b;
         if (Cal(n - 1, number, equation))
         {
@@ -73,7 +73,7 @@ bool Cal(int n, double *number, std::string *equation)
       //(b/a)
       if (a != 0) // 除数不为0
       {
-        equation[i] = '(' + expb + '/' + expa + ')';
+        equation[i] = '(' + exp_b + '/' + exp_a + ')';
         number[i]   = b / a;
         if (Cal(n - 1, number, equation))
         {
@@ -83,8 +83,8 @@ bool Cal(int n, double *number, std::string *equation)
       // 恢复
       number[i]   = a;
       number[j]   = b;
-      equation[i] = expa;
-      equation[j] = expb;
+      equation[i] = exp_a;
+      equation[j] = exp_b;
     }
   }
   return false;
@@ -97,12 +97,10 @@ int main()
   std::cout << "请输入4个数：" << std::endl;
   for (int i = 0; i < NUM; i++) // 输入4个数
   {
-    char buffer[20];
     int x;
     std::cin >> x;
-    a[i] = x;
-    itoa(x, buffer, 10); // 整数变字符串
-    eq[i] = buffer;      // std::string
+    a[i]  = x;
+    eq[i] = std::to_string(x);
   }
   if (Cal(NUM, a, eq)) // 运算成功
   {

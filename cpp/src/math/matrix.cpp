@@ -5,12 +5,13 @@
 #include <iomanip>
 
 using namespace std;
-const int maxn = 105;
+const int max_n = 105;
 struct Matrix
 {
   int n, m;
-  int v[maxn][maxn];
-  Matrix(int n, int m) : n(n), m(m) {}
+  int v[max_n][max_n];
+  Matrix(int n, int m) :
+    n(n), m(m) {}
   void init()
   { // 初始化矩阵
     memset(v, 0, sizeof v);
@@ -30,7 +31,9 @@ struct Matrix
     for (int i = 0; i < n; i++)
     {
       for (int j = 0; j < m; j++)
-       { cout << v[i][j] << " ";}
+      {
+        cout << v[i][j] << " ";
+      }
       cout << endl;
     }
   }
@@ -38,11 +41,11 @@ struct Matrix
 
 int main()
 {
-  ifstream file("Matix.txt");
+  ifstream file("Matrix.txt");
   if (!file.is_open())
   {
     cout << "wait" << endl;
-    system("pause");
+    [[maybe_unused]] int result = system("pause");
   }
   else
   {

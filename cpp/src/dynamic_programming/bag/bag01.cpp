@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <iostream>
-#include <vector>
 
 int capacity    = 30;
 int weights[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -50,7 +49,7 @@ int main()
 
   std::cout << "----------infinite---------" << std::endl;
 
-  int maxj[31] = {0};
+  int max_j[31] = {0};
   for (int j = 1; j < 31; j++)
   {
     for (int i = 0; i < 10; i++)
@@ -59,10 +58,10 @@ int main()
       {
         continue;
       }
-      if (maxj[j] < maxj[j - weights[i]] + values[i])
+      if (max_j[j] < max_j[j - weights[i]] + values[i])
       {
-        maxj[j] = maxj[j - weights[i]] + values[i];
-        std::cout << j << "-" << i << ": " << maxj[j] << std::endl;
+        max_j[j] = max_j[j - weights[i]] + values[i];
+        std::cout << j << "-" << i << ": " << max_j[j] << std::endl;
       }
     }
   }
