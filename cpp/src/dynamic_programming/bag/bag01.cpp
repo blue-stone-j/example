@@ -28,7 +28,7 @@ int main()
   std::cout << "--------- 01 ----------" << std::endl;
   std::cout << reverse() << std::endl;
 
-  int res[11][30] = {0};
+  int res[11][30] = {{0}};
   for (int j = 1; j < 30; j++)
   {
     for (int i = 0; i < 10; i++)

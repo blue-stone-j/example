@@ -25,6 +25,7 @@ class me : public Chinese, public woman
     m_beauty = a;
   }
 };
+
 int main()
 {
   me _me(true);

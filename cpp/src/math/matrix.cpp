@@ -2,7 +2,6 @@
 #include <cstdio>
 #include <cstring>
 #include <fstream>
-#include <iomanip>
 
 using namespace std;
 const int max_n = 105;

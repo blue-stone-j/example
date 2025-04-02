@@ -12,5 +12,6 @@ int main()
     ch[i] = ch[i + 1];
   }
   std::cout << ch << std::endl;
+  std::cout << pointer << std::endl;
   return 0;
 }
