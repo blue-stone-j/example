@@ -1,7 +1,7 @@
 '''
 1. Read several csv files, every row of csv file is a data pair that contains 3 value. Ignore the first row of every csv file. 
 2. Merge all data pairs. 
-3. Sort the merged data according the third value ascendently. 
+3. Sort the merged data according to the third value in ascendent order. 
 4. save data into a new csv file and use the first row ignored previously as the first row of the new file.
 '''
 

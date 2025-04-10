@@ -11,10 +11,10 @@ import matplotlib.pyplot as plt
 x = np.array([1, 2, 3, 4, 5])
 y = np.array([1, 4, 9, 16, 25])
 
-# Fit a 9th-order polynomial
+# Fit a 9th-order polynomial, ordered from highest to lowest power.
 coeffs = np.polyfit(x, y, 9)
 
-# Create the polynomial function
+# Create the polynomial function. 
 poly_func = np.poly1d(coeffs)
 
 # Evaluate the polynomial

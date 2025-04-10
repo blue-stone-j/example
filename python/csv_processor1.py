@@ -4,7 +4,7 @@ import numpy as np
 
 '''
 function:
-1. read a csv file(take as A) and take first colum as index, which starts from 0 and continous, take second column as value. 
+1. read a csv file(take as A) and take first column as index, which starts from 0 and continuous, take second column as value. 
 2. then read another csv file(take as B). use third column as x. 
 3. use int(5*x) as index to find corresponding value from file A. 
 4. use first column add this value as y. At last, draw x and y.

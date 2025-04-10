@@ -34,11 +34,11 @@ std::vector<Element> radiusSearch1D_sorted(const std::vector<Element> &sorted_da
 
   // Get iterators to the range
   /*
-  std::lower_bound will return the first valid insertion point where query - radius could be inserted to maintain order.
-  std::lower_bound will return an iterator pointing to sorted_data.end() only if the entire data is smaller than query - radius.
   add compare if element of sorted_data is complicate.
   */
-  auto lower_it = std::lower_bound(sorted_data.begin(), sorted_data.end(), lower, compare);
+  // lower_bound returns an iterator to the first element not less than (>=) the given value.
+  auto lower_it = --std::lower_bound(sorted_data.begin(), sorted_data.end(), lower, compare);
+  // upper_bound returns an iterator to the first element greater than (>) the given value.
   auto upper_it = std::upper_bound(sorted_data.begin(), sorted_data.end(), upper, compare);
 
   // Return the subrange
