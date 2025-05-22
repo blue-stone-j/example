@@ -8,12 +8,14 @@
 
 Some simple code snippets. Some of them are from leetcode.
 
-##### 2. project
+##### 2. lib
 
-这是一个基于`cmake`的项目。
+Examples for usage of libraries.
 
 ##### 3. ros
 
 ros相关的使用的代码。
 
-这个git库里也有`.vscode`文件夹，酌情使用。
+##### 4. shell
+
+Shell code examples.

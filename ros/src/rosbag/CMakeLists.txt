@@ -21,12 +21,7 @@ catkin_package(CATKIN_DEPENDS ${ROS_DEP})
 
 
 # file() 
-aux_source_directory(convert_to_rosbag ALL_SRC)
-add_executable(${PROJECT_NAME} src/readbag.cpp)
-# add_executable(${PROJECT_NAME} ${ALL_SRC})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${catkin_LIBRARIES})
-target_include_directories(${PROJECT_NAME} PUBLIC ./convert_to_rosbag ${catkin_INCLUDE_DIRS})
-
-# 
-set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ./)
+add_executable(read_bag src/read_bag.cpp)
+target_include_directories(read_bag PUBLIC ${catkin_INCLUDE_DIRS})
+target_link_libraries(read_bag ${catkin_LIBRARIES})
 
