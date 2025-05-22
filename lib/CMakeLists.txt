@@ -20,6 +20,14 @@ include(cmake/YAML.cmake)
 include(cmake/global_definition.cmake)
 include(cmake/GTSAM.cmake)
 
+find_package(roscpp REQUIRED)
+find_package(rosbag REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(Boost REQUIRED COMPONENTS filesystem)
+
 #
 # include_directories(libmy lib3rd)
 include_directories(${PROJECT_SOURCE_DIR})
@@ -33,6 +41,26 @@ target_link_libraries(exe ${PCL_LIBRARIES})
 
 add_executable(space src/space.cpp)
 target_link_libraries(space ${PCL_LIBRARIES})
+
+add_executable(eigen src/eigen.cpp)
+target_link_libraries(eigen ${PCL_LIBRARIES})
+
+
+add_executable(extract_images src/extract_images.cpp)
+target_include_directories(extract_images PUBLIC   ${roscpp_INCLUDE_DIRS}
+  ${rosbag_INCLUDE_DIRS}
+  ${sensor_msgs_INCLUDE_DIRS}
+  ${cv_bridge_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS})
+target_link_libraries(extract_images
+  ${roscpp_LIBRARIES}
+  ${rosbag_LIBRARIES}
+  ${sensor_msgs_LIBRARIES}
+  ${cv_bridge_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+  ${Boost_LIBRARIES}
+)
 
 # ---------------------------------------------------------------------------------------
 # Install
