@@ -65,3 +65,15 @@ if __name__ == "__main__":
 
     result = add_euler_angles(euler1, euler2, order)
     print("Combined Euler angles (radians):", result)
+
+    # First rotation: 30 deg about Z
+    q1 = R.from_euler('z', 30, degrees=True)
+
+    # Second rotation: 45 deg about Y
+    q2 = R.from_euler('y', 45, degrees=True)
+
+    # Combined rotation
+    q_total = q2 * q1  # apply q1 first, then q2
+
+    print("Combined rotation matrix:\n", q_total.as_matrix())
+    print("Combined quaternion:\n", q_total.as_quat())  # [x, y, z, w]
