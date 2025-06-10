@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timezone
 import time
 
 # Get current date and time
@@ -36,3 +36,8 @@ start = datetime.now()
 end = datetime.now()
 duration = end - start
 print(f"Duration: {duration.total_seconds():.3f} seconds")
+
+
+timestamp = 1747204350012 / 1000
+dt = datetime.fromtimestamp(timestamp, tz=timezone.utc)
+print(dt.isoformat() + "Z")
