@@ -2,6 +2,7 @@
 manipulate file paths
 '''
 
+from pathlib import Path
 import os
 
 def split_path(path):
@@ -33,3 +34,22 @@ print()
 # Merging directory and filename without extension
 merged_dir_filename = merge_dir_and_filename(directory, filename)
 print("Merged Directory and Filename:", merged_dir_filename)
+
+
+### traverse directories
+root_path = Path("/path/to/your/directory")
+# Traverse all directories and subdirectories
+for path in root_path.rglob("*"):
+    if path.is_dir():
+        print(path)
+# only direct subdirectories of the root
+for path in root_path.iterdir():
+    if path.is_dir():
+        print(path)
+
+# dirnames: list of subdirectories in dirpath
+# filenames: list of non-directory files in dirpath
+for dirpath, dirnames, filenames in os.walk(root_path):
+    print("Current folder:", dirpath)
+    print("Subfolders:", dirnames)
+    print("Files:", filenames)
