@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the CSV file
-df = pd.read_csv('your_file.csv')
+df = pd.read_csv('file.csv')
 
 # Create subplots
 fig, axs = plt.subplots(2, 1, figsize=(8, 6), sharex=True)
