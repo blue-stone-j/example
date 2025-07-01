@@ -11,8 +11,8 @@ Eigen::VectorXd fitPoly(const Eigen::VectorXd &x, const Eigen::VectorXd &y, int 
   }
 
   // Solve for the coefficients using QR decomposition
-  Eigen::VectorXd coeffs = A.householderQr().solve(y);
-  return coeffs;
+  Eigen::VectorXd coefficients = A.householderQr().solve(y);
+  return coefficients;
 }
 
 /**
@@ -61,10 +61,10 @@ int main()
   // x << 1, 2, 3, 4, 5;
   // y << 1, 4, 9, 16, 25;
 
-  // Eigen::VectorXd coeffs = fitPoly(x, y, 9);
+  // Eigen::VectorXd coefficients = fitPoly(x, y, 9);
 
   // std::cout << "Fitted coefficients:\n"
-  //           << coeffs << std::endl;
+  //           << coefficients << std::endl;
 
   std::vector<Eigen::Vector3d> normals1 = {
       {1, 0.5, 0.4},
@@ -82,3 +82,18 @@ int main()
 
   return 0;
 }
+
+/*
+#include <Eigen/Core>
+#include <Eigen/Geometry>
+#include <opencv2/core.hpp>
+
+cv::Mat rotation_vec; // input rotation vector (3x1)
+cv::Rodrigues(rotation_vec, R); // convert to rotation matrix
+
+// Convert cv::Mat to Eigen::Matrix3d
+Eigen::Matrix3d eigen_R;
+cv::cv2eigen(R, eigen_R);  // requires #include <opencv2/eigen.hpp>
+
+Eigen::Quaterniond q(eigen_R); // rotation quaternion
+*/

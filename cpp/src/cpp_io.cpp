@@ -265,7 +265,7 @@ int main()
     if (fin)
     {
       std::string line;
-      int lineInd = 0;
+      int line_id = 0;
       while (std::getline(fin, line))
       {
         if (0)
@@ -275,7 +275,7 @@ int main()
           std::vector<double> vec(3);
           ss >> vec[0] >> vec[1] >> vec[2];
           vecs.push_back(vec);
-          lineInd++;
+          line_id++;
         }
         else
         {
@@ -288,7 +288,7 @@ int main()
             vec.push_back(std::stof(token));
           }
           vecs.push_back(vec);
-          lineInd++;
+          line_id++;
         }
       }
       fin.close();
@@ -352,7 +352,7 @@ int main()
         if (delimiterPos == std::string::npos) continue; // Skip lines without '='
         auto name             = line.substr(0, delimiterPos);
         auto value            = line.substr(delimiterPos + 1);
-        result[section][name] = value;
+        result[section][name] = value; // or result.at(section).at(name) = value
         std::cout << value << std::endl;
       }
     }
