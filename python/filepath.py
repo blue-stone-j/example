@@ -11,29 +11,29 @@ def split_path(path):
     filename, ext = os.path.splitext(filename_with_ext)
     return directory, filename, ext
 
-def merge_path(directory, filename, extension):
+def combine_path(directory, filename, extension):
     return os.path.join(directory, filename + extension)
 
-def merge_dir_and_filename(directory, filename_no_ext):
+def combine_folder_and_filename(directory, filename_no_ext):
     return os.path.join(directory, filename_no_ext)
 
 # Example usage
-path = "/home/user/data/image001.png"
-directory, filename, extension = split_path(path)
+filepath = "/home/user/data/image001.png"
+directory, filename, extension = split_path(filepath)
 
 print("Directory:", directory)
 print("Filename:", filename)
 print("Extension:", extension)
 print()
 
-# Merging paths
-merged_path = merge_path(directory, filename, extension)
-print("Merged Path:", merged_path)
+# Combining paths
+combined_path = combine_path(directory, filename, extension)
+print("Combined Path:", combined_path)
 print()
 
-# Merging directory and filename without extension
-merged_dir_filename = merge_dir_and_filename(directory, filename)
-print("Merged Directory and Filename:", merged_dir_filename)
+# Combining directory and filename without extension
+combined_dir_filename = combine_folder_and_filename(directory, filename)
+print("Combined Directory and Filename:", combined_dir_filename)
 
 
 ### traverse directories
@@ -53,3 +53,15 @@ for dirpath, dirnames, filenames in os.walk(root_path):
     print("Current folder:", dirpath)
     print("Subfolders:", dirnames)
     print("Files:", filenames)
+
+# Create a directory if it does not exist
+if not os.path.exists(directory):
+    os.makedirs(directory)
+
+# Get the folder name from a file path
+folder = os.path.dirname(filepath)
+print(folder)
+
+from pathlib import Path
+# Get the folder name using pathlib
+folder = filepath.parent
