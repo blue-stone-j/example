@@ -1,7 +1,9 @@
 
 #include <condition_variable>
+#include <iostream>
 #include <mutex>
 #include <queue>
+#include <thread>
 
 template <typename T>
 class ThreadSafeQueue
@@ -35,45 +37,26 @@ class ThreadSafeQueue
   }
 };
 
-void worker(ThreadSafeQueue<rosbag::MessageInstance> &queue, int id)
+void worker(ThreadSafeQueue<int> &queue, int id)
 {
   while (true)
   {
-    rosbag::MessageInstance msg;
+    int msg;
     if (queue.pop(msg))
     {
-      // Example: handle sensor_msgs::Image
-      sensor_msgs::Image::ConstPtr img = msg.instantiate<sensor_msgs::Image>();
-      if (img != nullptr)
-      {
-        // process image
-        std::cout << "Thread " << id << " processing image\n";
-      }
+      std::cout << msg << "\n";
     }
   }
 }
 
-void read_bag(ThreadSafeQueue<rosbag::MessageInstance> &queue)
-{
-  rosbag::Bag bag;
-  bag.open("file.bag", rosbag::bagmode::Read);
-
-  std::vector<std::string> topics = {"/topic1", "/topic2"};
-  rosbag::View view(bag, rosbag::TopicQuery(topics));
-
-  for (const rosbag::MessageInstance &m : view)
-  {
-    queue.push(m); // Enqueue message
-  }
-  bag.close();
-}
-
 int main(int argc, char **argv)
 {
-  ThreadSafeQueue<rosbag::MessageInstance> queue;
+  ThreadSafeQueue<int> queue;
 
-  // Read messages in main thread
-  read_bag(queue);
+  queue.push(1);
+  queue.push(2);
+  queue.push(3);
+  queue.push(4);
 
   const int NUM_THREADS = 4;
   std::vector<std::thread> workers;

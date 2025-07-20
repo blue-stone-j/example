@@ -17,19 +17,19 @@ int main()
 
 
   std::multiset<short>::iterator mul;
-  std::multimap<std::string, std::string>::iterator multi_map2;
+  std::multimap<std::string, std::string>::iterator it;
 
-  std::cout << "multiset容器中各元素的值：";
+  std::cout << "multiset容器中各元素的值:";
   for (mul = multi_set.begin(); mul != multi_set.end(); mul++)
   {
     std::cout << *mul << " ";
   }
   std::cout << std::endl;
 
-  std::cout << "multimap容器中各元素的值：";
-  for (multi_map2 = multi_map2.begin(); multi_map2 != multi_map2.end(); multi_map2++)
+  std::cout << "multimap容器中各元素的值:";
+  for (it = multi_map1.begin(); it != multi_map1.end(); ++it)
   {
-    std::cout << multi_map2->first << " " << multi_map2->second << " ";
+    std::cout << it->first << " " << it->second << " ";
   }
   std::cout << std::endl;
 
