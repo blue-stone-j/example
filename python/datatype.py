@@ -1,7 +1,6 @@
 
 
 '''list'''
-
 # Declare a list
 list1 = [1, 2, 3]
 
@@ -29,5 +28,18 @@ import itertools
 merged_iter = itertools.chain(list1, list2)
 merged_list = list(merged_iter)
 print(merged_list)
+
+import numpy as np
+# convert ndarray to list
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+lst = arr.tolist()
+
+'''dictionary'''
+dict = {} # Declare an empty dictionary
+dict['key1'] = 'value1'  # Add a key-value pair
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'c': 3, 'd': 4}
+merged_dict = {**dict1, **dict2}
+print(merged_dict)
 
 '''tuple'''

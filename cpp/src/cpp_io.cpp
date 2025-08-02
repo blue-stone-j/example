@@ -17,6 +17,8 @@ input/read and output/write
 #include <iomanip>
 
 #include <yaml-cpp/yaml.h>
+
+// there are many json libraries, this is one of them, such as nlohmann/json, rapidjson, etc. They have different APIs.
 #include <json/json.h>
 
 extern "C" {
@@ -219,7 +221,12 @@ int main()
     for (uint32_t i = 0; i < configurations.size(); ++i)
     {
       const Json::Value &configuration = configurations[i];
-      const Json::Value &name          = configuration["name"];
+      if (configuration.isMember("name") == false)
+      {
+        std::cerr << "Configuration does not contain 'name' field." << std::endl;
+        continue;
+      }
+      const Json::Value &name = configuration["name"];
       if (name.asString() == "cpp")
       {
         const Json::Value &includePath = configuration["includePath"];

@@ -36,5 +36,7 @@ int main()
   char *string_wrong = (char *)"abc";
   int value          = std::atoi(string_wrong); // result: 0
 
+  uint64_t value_u64 = std::stoull(str);
+
   return 0;
 }
