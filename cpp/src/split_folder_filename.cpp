@@ -8,11 +8,19 @@ int main()
   std::filesystem::path path(path_str);
 
   std::filesystem::path folder = path.parent_path();
-  std::filesystem::path file   = path.filename();
+  std::filesystem::path file   = path.filename();  // with extension
+  std::filesystem::path stem   = file.stem();      // without extension
+  std::filesystem::path ext    = file.extension(); // just the extension
 
   std::cout << "Directory: " << folder << std::endl;
   std::cout << "Filename : " << file << std::endl;
+  std::cout << "Stem     : " << stem << std::endl;
+  std::cout << "Extension: " << ext << std::endl;
 
+  // convert path to string using the platform’s preferred directory separators
+  std::string path_string1 = path.string();
+  // convert path to generic string using forward slashes (/), regardless of platform.
+  std::string path_string2 = path.generic_string();
 
   // using string manipulation
   std::string full_path = "/home/user/data/file.txt";

@@ -1,3 +1,8 @@
+'''
+1. conversion between rotation matrix and euler angle
+2. angle addition
+'''
+
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
