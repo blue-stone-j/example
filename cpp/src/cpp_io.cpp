@@ -21,6 +21,12 @@ input/read and output/write
 // there are many json libraries, this is one of them, such as nlohmann/json, rapidjson, etc. They have different APIs.
 #include <json/json.h>
 
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+
 extern "C" {
 #include "lua.h"
 #include "lauxlib.h"
@@ -30,6 +36,29 @@ extern "C" {
 int main()
 {
   { // std::cin: one input ends by space, table or enter
+
+    if (0)
+    {
+      std::cerr << "Immediate error output\n";
+      std::clog << "Buffered log output\n";
+
+      std::cout << "\033[31mRed text\033[0m" << std::endl;
+      std::cout << "\033[32mGreen text\033[0m" << std::endl;
+      std::cout << "\033[33mYellow text\033[0m" << std::endl;
+      std::cout << "\033[34mBlue text\033[0m" << std::endl;
+      std::cerr << "\033[1;31mError in bold red\033[0m" << std::endl;
+
+      // \033[1A → move cursor up 1 line.
+      // \033[2K → clear the whole current line.
+      // \033[31m → set red color.
+      // \033[0m → reset to default color.
+    }
+
+    if (0)
+    {
+      std::string name = "Alice";
+      printf("Hello, %s\n", name.c_str()); // convert to const char*
+    }
 
     if (0)
     {
