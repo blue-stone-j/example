@@ -42,25 +42,26 @@ target_link_libraries(exe ${PCL_LIBRARIES})
 add_executable(space src/space.cpp)
 target_link_libraries(space ${PCL_LIBRARIES})
 
-add_executable(eigen src/eigen.cpp)
-target_link_libraries(eigen ${PCL_LIBRARIES})
+add_executable(eigen src/eigen/eigen.cpp)
 
+add_executable(compute_vector_rotation src/eigen/compute_vector_rotation.cpp)
+target_link_libraries(compute_vector_rotation ${PCL_LIBRARIES})
 
-add_executable(extract_images src/extract_images.cpp)
-target_include_directories(extract_images PUBLIC   ${roscpp_INCLUDE_DIRS}
-  ${rosbag_INCLUDE_DIRS}
-  ${sensor_msgs_INCLUDE_DIRS}
-  ${cv_bridge_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIRS})
-target_link_libraries(extract_images
-  ${roscpp_LIBRARIES}
-  ${rosbag_LIBRARIES}
-  ${sensor_msgs_LIBRARIES}
-  ${cv_bridge_LIBRARIES}
-  ${OpenCV_LIBRARIES}
-  ${Boost_LIBRARIES}
-)
+# add_executable(extract_images src/extract_images.cpp)
+# target_include_directories(extract_images PUBLIC   ${roscpp_INCLUDE_DIRS}
+#   ${rosbag_INCLUDE_DIRS}
+#   ${sensor_msgs_INCLUDE_DIRS}
+#   ${cv_bridge_INCLUDE_DIRS}
+#   ${OpenCV_INCLUDE_DIRS}
+#   ${Boost_INCLUDE_DIRS})
+# target_link_libraries(extract_images
+#   ${roscpp_LIBRARIES}
+#   ${rosbag_LIBRARIES}
+#   ${sensor_msgs_LIBRARIES}
+#   ${cv_bridge_LIBRARIES}
+#   ${OpenCV_LIBRARIES}
+#   ${Boost_LIBRARIES}
+# )
 
 # ---------------------------------------------------------------------------------------
 # Install
