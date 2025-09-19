@@ -32,5 +32,12 @@ int main()
   }
   std::cout << std::endl;
 
+  // filter vector in place
+  vec.erase(
+      std::remove_if(vec.begin(), vec.end(),
+                     [](int x) { return x % 2 != 0; } // remove odd
+                     ),
+      vec.end());
+
   return 0;
 }
