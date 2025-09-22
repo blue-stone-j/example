@@ -171,7 +171,7 @@ int main()
       }
       out.close(); // 关闭
     }
-  }
+  } // file
 
   // yaml
   if (0)
@@ -216,7 +216,7 @@ int main()
     }
     fout << config_node;
     fout.close();
-  }
+  } // yaml
 
   if (0) // json
   {
@@ -281,7 +281,7 @@ int main()
     std::unique_ptr<Json::StreamWriter> json_writer(writer.newStreamWriter());
     json_writer->write(root, &fout);
     fout.close();
-  }
+  } // json
 
   if (0) // xml
   {
@@ -349,7 +349,7 @@ int main()
     }
 
     fout.close();
-  }
+  } // csv + getline()
 
   if (0) // ini-custom
   {
@@ -413,7 +413,8 @@ int main()
     }
 
     fout.close();
-  }
+  } // ini-custom
+
   if (0) // ini-lib
   {}
 
@@ -447,7 +448,7 @@ int main()
     std::cout << "Result: " << result << std::endl;
 
     lua_close(L); // 关闭Lua
-  }
+  }               // lua
 
   return 0;
 }
