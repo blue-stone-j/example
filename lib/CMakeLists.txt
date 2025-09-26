@@ -1,7 +1,7 @@
 # 指定cmake的最低版本。在实际使用时，如果涉及的项目不复杂，随便选择一个版本即可。如果报错了再重选最低版本即可。
 cmake_minimum_required(VERSION 3.10.2)
 # 指定该项目的名称，此处该项目的名称即为“name”
-project(name)
+project(library_example)
 
 # 编译类型为release，不是debug
 set(CMAKE_BUILD_TYPE "Release")
@@ -13,6 +13,7 @@ set(CMAKE_CXX_FLAGS "-std=c++17")
 # pthread是linux下的线程库，用了多线程就要链接这个库，这时候要在编译选项上增加-pthread或者-lpthread
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g -pthread")
 
+include(cmake/eigen.cmake)
 include(cmake/glog.cmake)
 include(cmake/PCL.cmake)
 include(cmake/OpenCV.cmake)
@@ -25,9 +26,7 @@ find_package(rosbag REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
-find_package(OpenCV REQUIRED)
-find_package(Boost REQUIRED COMPONENTS filesystem)
-
+find_package(Sophus REQUIRED)
 #
 # include_directories(libmy lib3rd)
 include_directories(${PROJECT_SOURCE_DIR})

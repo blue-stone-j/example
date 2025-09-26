@@ -36,5 +36,5 @@ if (GLOG_FOUND)
                                  GLOG_LIBRARY GLOG_INCLUDE_DIR)
 endif()
 
-include_directories(${GLOG_INCLUDE_DIRS})
+# include_directories(${GLOG_INCLUDE_DIRS})
 

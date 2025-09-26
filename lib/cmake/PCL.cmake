@@ -1,4 +1,4 @@
-find_package(PCL REQUIRED QUIET)
+find_package(PCL REQUIRED)
 list(REMOVE_ITEM PCL_LIBRARIES "vtkproj4")
 
-include_directories(${PCL_INCLUDE_DIRS})
+# include_directories(${PCL_INCLUDE_DIRS})
