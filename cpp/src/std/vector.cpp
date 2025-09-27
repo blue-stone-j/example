@@ -1,5 +1,6 @@
 // This program demonstrates how to delete elements from a vector evenly until it reaches a target size.
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -33,11 +34,8 @@ int main()
   std::cout << std::endl;
 
   // filter vector in place
-  vec.erase(
-      std::remove_if(vec.begin(), vec.end(),
-                     [](int x) { return x % 2 != 0; } // remove odd
-                     ),
-      vec.end());
+  vec.erase(std::remove_if(vec.begin(), vec.end(), [](int x) { return x % 2 != 0; }), // remove odd
+            vec.end());
 
   return 0;
 }
