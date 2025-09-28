@@ -7,7 +7,7 @@ void(writer)(const char *data, int size)
 {
   LOG(ERROR) << data;
 }
-int glog(char **argv)
+int main(int argc, char **argv)
 {
   google::InitGoogleLogging(argv[0]);     // 初始化日志库
   FLAGS_minloglevel     = google::ERROR;  // 只记录大于等于ERROR等级的日志

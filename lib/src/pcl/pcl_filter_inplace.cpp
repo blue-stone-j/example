@@ -44,3 +44,7 @@ void filterByRadiusEraseRemove(pcl::PointCloud<PointT> &cloud,
   cloud.height   = 1;
   cloud.is_dense = true;
 }
+
+int main(int argc, char **argv)
+{
+}

@@ -5,7 +5,7 @@
 #include <sensor_msgs/Image.h>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
-#include <boost/filesystem.hpp>
+#include <filesystem>
 
 #include <iostream>
 #include <iomanip>
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
   std::string image_topic = argv[2];
   std::string out_folder  = "extracted_images";
 
-  boost::filesystem::create_directory(out_folder);
+  std::filesystem::create_directory(out_folder);
 
   rosbag::Bag bag;
   try
@@ -37,11 +37,13 @@ int main(int argc, char **argv)
   }
 
   rosbag::View view(bag, rosbag::TopicQuery(image_topic));
-  size_t count = 0;
+  std::size_t count = 0;
 
-  for (const rosbag::MessageInstance &m : view)
+  for (const rosbag::MessageInstance &message : view)
   {
-    auto image_message = m.instantiate<sensor_msgs::Image>();
+    if (message.getTopic() != image_topic)
+    { continue; }
+    auto image_message = message.instantiate<sensor_msgs::Image>();
     if (!image_message)
     {
       continue;
