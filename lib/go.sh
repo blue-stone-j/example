@@ -2,5 +2,8 @@
 mkdir -p build &&
 cd build &&
 cmake .. &&
-make &&
-./eigen
+make -j6 &&
+# ./eigen_base
+# ./sensor_frames_demo &&
+
+date "+%Y-%m-%d %H:%M:%S"
