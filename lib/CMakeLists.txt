@@ -38,6 +38,9 @@ include_directories(${PROJECT_SOURCE_DIR})
 ### pcl ###
 add_executable(pcl_point_fields src/pcl/pcl_point_fields.cpp)
 target_link_libraries(pcl_point_fields ${PCL_LIBRARIES})
+
+add_executable(pcl_region_growing src/pcl/pcl_region_growing.cpp)
+target_link_libraries(pcl_region_growing ${PCL_LIBRARIES})
 add_executable(exe src/main.cpp)
 target_link_libraries(exe ${PCL_LIBRARIES})
 
