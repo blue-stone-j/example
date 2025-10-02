@@ -47,40 +47,7 @@ target_link_libraries(exe ${PCL_LIBRARIES})
 add_executable(space src/space.cpp)
 target_link_libraries(space ${PCL_LIBRARIES})
 
-add_executable(eigen src/eigen/eigen.cpp)
-
-add_executable(compute_vector_rotation src/eigen/compute_vector_rotation.cpp)
-target_link_libraries(compute_vector_rotation ${PCL_LIBRARIES})
-
-# add_executable(extract_images src/extract_images.cpp)
-# target_include_directories(extract_images PUBLIC   ${roscpp_INCLUDE_DIRS}
-#   ${rosbag_INCLUDE_DIRS}
-#   ${sensor_msgs_INCLUDE_DIRS}
-#   ${cv_bridge_INCLUDE_DIRS}
-#   ${OpenCV_INCLUDE_DIRS}
-#   ${Boost_INCLUDE_DIRS})
-# target_link_libraries(extract_images
-#   ${roscpp_LIBRARIES}
-#   ${rosbag_LIBRARIES}
-#   ${sensor_msgs_LIBRARIES}
-#   ${cv_bridge_LIBRARIES}
-#   ${OpenCV_LIBRARIES}
-#   ${Boost_LIBRARIES}
-# )
-
-# ---------------------------------------------------------------------------------------
-# Install
-# ---------------------------------------------------------------------------------------
-# install(TARGETS ${PROJECT_NAME}_node
-# 	ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-# 	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-# 	RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# 	)
-
-# install(DIRECTORY
-#   launch
-#   config
-#   msg
-#   srv
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-#   )
+add_executable(sensor_extrinsic_viewer src/sensor_extrinsic_viewer.cpp)
+target_include_directories(sensor_extrinsic_viewer PRIVATE ${PCL_INCLUDE_DIRS})
+target_link_libraries(sensor_extrinsic_viewer PRIVATE ${PCL_LIBRARIES})
+add_definitions(${PCL_DEFINITIONS})
