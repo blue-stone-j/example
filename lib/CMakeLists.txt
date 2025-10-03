@@ -41,6 +41,13 @@ target_link_libraries(pcl_point_fields ${PCL_LIBRARIES})
 
 add_executable(pcl_region_growing src/pcl/pcl_region_growing.cpp)
 target_link_libraries(pcl_region_growing ${PCL_LIBRARIES})
+
+### ros ###
+
+add_executable(ros_cloud_msg_fields src/ros/ros_cloud_msg_fields.cpp)
+target_include_directories(ros_cloud_msg_fields PUBLIC ${rosbag_INCLUDE_DIRS} ${sensor_msgs_INCLUDE_DIRS} ${pcl_INCLUDE_DIRS})
+target_link_libraries(ros_cloud_msg_fields ${rosbag_LIBRARIES} ${sensor_msgs_LIBRARIES} ${pcl_LIBRARIES})
+
 add_executable(exe src/main.cpp)
 target_link_libraries(exe ${PCL_LIBRARIES})
 
