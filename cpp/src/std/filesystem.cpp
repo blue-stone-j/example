@@ -1,5 +1,6 @@
 
 #include <filesystem>
+#include <iostream>
 
 int main(int argc, char **argv)
 {
@@ -58,28 +59,28 @@ int main(int argc, char **argv)
   }
 
 
-  const fs::path source      = "my_directory/file.txt";
-  const fs::path destination = "backup_folder/file.txt";
+  const std::filesystem::path source      = "my_directory/file.txt";
+  const std::filesystem::path destination = "backup_folder/file.txt";
   try
   {
-    fs::create_directories(destination.parent_path()); // ensure target folder exists
-    fs::copy_file(source, destination, fs::copy_options::overwrite_existing);
+    std::filesystem::create_directories(destination.parent_path()); // ensure target folder exists
+    std::filesystem::copy_file(source, destination, std::filesystem::copy_options::overwrite_existing);
     std::cout << "File copied successfully.\n";
   }
-  catch (const fs::filesystem_error &e)
+  catch (const std::filesystem::filesystem_error &e)
   {
     std::cerr << "Error: " << e.what() << '\n';
   }
 
   try
   {
-    fs::create_directories(destination); // ensure destination exists
+    std::filesystem::create_directories(destination); // ensure destination exists
 
-    fs::copy(source, destination, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+    std::filesystem::copy(source, destination, std::filesystem::copy_options::recursive | std::filesystem::copy_options::overwrite_existing);
 
     std::cout << "Folder copied successfully.\n";
   }
-  catch (const fs::filesystem_error &e)
+  catch (const std::filesystem::filesystem_error &e)
   {
     std::cerr << "Error: " << e.what() << '\n';
   }
