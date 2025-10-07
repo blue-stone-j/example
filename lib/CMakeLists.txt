@@ -35,7 +35,27 @@ include_directories(${PROJECT_SOURCE_DIR})
 # # Build ##
 # ##########
 
+
+### eigen ###
+add_executable(compute_vector_rotation src/eigen/compute_vector_rotation.cpp)
+target_link_libraries(compute_vector_rotation ${PCL_LIBRARIES})
+
+add_executable(eigen_base src/eigen/eigen_base.cpp)
+target_include_directories(eigen_base PUBLIC ${EIGEN3_INCLUDE_DIRS})
+
 ### pcl ###
+add_executable(pcl_calculate_normal_using_octree src/pcl/pcl_calculate_normal_using_octree.cpp)
+target_link_libraries(pcl_calculate_normal_using_octree ${PCL_LIBRARIES})
+
+add_executable(pcl_filter_inplace src/pcl/pcl_filter_inplace.cpp)
+target_link_libraries(pcl_filter_inplace ${PCL_LIBRARIES})
+
+add_executable(pcl_find_nearest_using_octree src/pcl/pcl_find_nearest_using_octree.cpp)
+target_link_libraries(pcl_find_nearest_using_octree ${PCL_LIBRARIES})
+
+add_executable(pcl_pass_through src/pcl/pcl_pass_through.cpp)
+target_link_libraries(pcl_pass_through ${PCL_LIBRARIES})
+
 add_executable(pcl_point_fields src/pcl/pcl_point_fields.cpp)
 target_link_libraries(pcl_point_fields ${PCL_LIBRARIES})
 
@@ -43,13 +63,30 @@ add_executable(pcl_region_growing src/pcl/pcl_region_growing.cpp)
 target_link_libraries(pcl_region_growing ${PCL_LIBRARIES})
 
 ### ros ###
+add_executable(ros_bag_extract_images src/ros/ros_bag_extract_images.cpp)
+target_include_directories(ros_bag_extract_images PUBLIC ${rosbag_INCLUDE_DIRS} ${sensor_msgs_INCLUDE_DIRS} ${cv_bridge_INCLUDE_DIRS})
+target_link_libraries(ros_bag_extract_images ${rosbag_LIBRARIES} ${sensor_msgs_LIBRARIES} ${cv_bridge_LIBRARIES})
 
 add_executable(ros_cloud_msg_fields src/ros/ros_cloud_msg_fields.cpp)
 target_include_directories(ros_cloud_msg_fields PUBLIC ${rosbag_INCLUDE_DIRS} ${sensor_msgs_INCLUDE_DIRS} ${pcl_INCLUDE_DIRS})
 target_link_libraries(ros_cloud_msg_fields ${rosbag_LIBRARIES} ${sensor_msgs_LIBRARIES} ${pcl_LIBRARIES})
 
+
+### other ###
 add_executable(exe src/main.cpp)
 target_link_libraries(exe ${PCL_LIBRARIES})
+
+# add_executable(g2o_usage src/g2o_usage.cpp)
+# target_link_libraries(g2o_usage ${PCL_LIBRARIES})
+
+add_executable(glog_usage src/glog_usage.cpp)
+target_link_libraries(glog_usage PRIVATE glog)
+
+# add_executable(gtsam_usage src/gtsam_usage.cpp)
+# target_link_libraries(gtsam_usage ${PCL_LIBRARIES})
+
+# add_executable(gtsam_variant_camera src/gtsam_variant_camera.cpp)
+# target_link_libraries(gtsam_variant_camera gtsam)
 
 add_executable(space src/space.cpp)
 target_link_libraries(space ${PCL_LIBRARIES})
