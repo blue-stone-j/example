@@ -88,6 +88,9 @@ target_link_libraries(glog_usage PRIVATE glog)
 # add_executable(gtsam_variant_camera src/gtsam_variant_camera.cpp)
 # target_link_libraries(gtsam_variant_camera gtsam)
 
+add_executable(integrate_imu src/gtsam/integrate_imu.cpp)
+target_link_libraries(integrate_imu gtsam)
+
 add_executable(space src/space.cpp)
 target_link_libraries(space ${PCL_LIBRARIES})
 
