@@ -3,6 +3,7 @@
 2. given a square, find the nearest occupied square and return the path to it.
 */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -11,6 +12,10 @@
 struct Cell
 {
   int x, y;
+  bool operator<(const Cell &other) const
+  {
+    return x == other.x ? y < other.y : x < other.x;
+  }
 };
 
 // Directions for moving in 4 directions (right, left, down, up)

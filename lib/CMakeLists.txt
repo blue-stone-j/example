@@ -98,3 +98,6 @@ add_executable(sensor_extrinsic_viewer src/sensor_extrinsic_viewer.cpp)
 target_include_directories(sensor_extrinsic_viewer PRIVATE ${PCL_INCLUDE_DIRS})
 target_link_libraries(sensor_extrinsic_viewer PRIVATE ${PCL_LIBRARIES})
 add_definitions(${PCL_DEFINITIONS})
+
+add_executable(sophus_usage src/sophus_usage.cpp)
+target_link_libraries(sophus_usage PRIVATE Sophus::Sophus)

@@ -21,6 +21,11 @@ catkin_package(CATKIN_DEPENDS ${ROS_DEP})
 
 
 # file() 
+
+add_executable(dump_bag src/dump_bag.cpp)
+target_include_directories(dump_bag PUBLIC ${catkin_INCLUDE_DIRS})
+target_link_libraries(dump_bag ${catkin_LIBRARIES})
+
 add_executable(read_bag src/read_bag.cpp)
 target_include_directories(read_bag PUBLIC ${catkin_INCLUDE_DIRS})
 target_link_libraries(read_bag ${catkin_LIBRARIES})
