@@ -37,5 +37,20 @@ int main()
   vec.erase(std::remove_if(vec.begin(), vec.end(), [](int x) { return x % 2 != 0; }), // remove odd
             vec.end());
 
+  // judge whether it contains specific value
+  {
+    int valueToFind = 4;
+    if (std::find(vec.begin(), vec.end(), valueToFind) != vec.end())
+    {
+      std::cout << "Vector contains " << valueToFind << std::endl;
+    }
+
+    // if vector is sorted
+    if (std::binary_search(vec.begin(), vec.end(), valueToFind))
+    {
+      std::cout << "Found\n";
+    }
+  }
+
   return 0;
 }

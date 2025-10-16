@@ -1,8 +1,11 @@
 /**
- * @file CameraRuntimeOwned.cpp
- * @brief Long-lived, runtime-selectable GTSAM calibration with camera variant
- * @author bs
- * @LastEditTime 2025-09-30
+gtsam::Cal3_S2 → the most common one, pinhole camera model with radial and tangential distortion.
+
+gtsam::Cal3Bundler → used in Bundler/VisualSFM style calibrations (slightly different distortion convention).
+
+gtsam::Cal3Unified → more general model that can represent both perspective and some non-perspective cameras.
+
+gtsam::Cal3DS2 → extended pinhole model with higher-order distortion.
  */
 
 #include <gtsam/geometry/PinholeCamera.h>
