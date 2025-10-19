@@ -4,6 +4,5 @@ cd build &&
 cmake .. &&
 make -j6 &&
 # ./eigen_base
-# ./sensor_frames_demo &&
-
+./sensor_extrinsic_viewer
 date "+%Y-%m-%d %H:%M:%S"

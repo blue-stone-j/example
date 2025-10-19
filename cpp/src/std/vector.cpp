@@ -52,5 +52,17 @@ int main()
     }
   }
 
+  // merge two std::vector and one of the std::vectors will not be used anymore
+  {
+    std::vector<int> v1 = {1, 2, 3};
+    std::vector<int> v2 = {4, 5, 6};
+
+    v1.insert(v1.end(), std::make_move_iterator(v2.begin()), std::make_move_iterator(v2.end()));
+    /*
+    After the move, each element of v2 is in a valid but unspecified state (for int or bool this just means copied, 
+    for std::string it usually becomes empty, for complex types it depends on their move semantics).
+    */
+  }
+
   return 0;
 }
