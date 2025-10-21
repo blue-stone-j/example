@@ -1,4 +1,9 @@
-/**/
+/*
+shared_pointer
+*/
+
+#include <iostream>
+#include <memory>
 
 int main(int argc, char **argv)
 {
