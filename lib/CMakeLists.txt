@@ -71,6 +71,18 @@ add_executable(ros_cloud_msg_fields src/ros/ros_cloud_msg_fields.cpp)
 target_include_directories(ros_cloud_msg_fields PUBLIC ${rosbag_INCLUDE_DIRS} ${sensor_msgs_INCLUDE_DIRS} ${pcl_INCLUDE_DIRS})
 target_link_libraries(ros_cloud_msg_fields ${rosbag_LIBRARIES} ${sensor_msgs_LIBRARIES} ${pcl_LIBRARIES})
 
+### gtsam ###
+# add_executable(gtsam_usage src/gtsam_usage.cpp)
+# target_link_libraries(gtsam_usage ${PCL_LIBRARIES})
+
+# add_executable(gtsam_variant_camera src/gtsam/gtsam_variant_camera.cpp)
+# target_link_libraries(gtsam_variant_camera PRIVATE gtsam)
+
+add_executable(integrate_imu src/gtsam/integrate_imu.cpp)
+target_link_libraries(integrate_imu gtsam)
+
+add_executable(velocity_from_imu src/gtsam/velocity_from_imu.cpp)
+target_link_libraries(velocity_from_imu gtsam)
 
 ### other ###
 add_executable(exe src/main.cpp)
@@ -81,15 +93,6 @@ target_link_libraries(exe ${PCL_LIBRARIES})
 
 add_executable(glog_usage src/glog_usage.cpp)
 target_link_libraries(glog_usage PRIVATE glog)
-
-# add_executable(gtsam_usage src/gtsam_usage.cpp)
-# target_link_libraries(gtsam_usage ${PCL_LIBRARIES})
-
-# add_executable(gtsam_variant_camera src/gtsam_variant_camera.cpp)
-# target_link_libraries(gtsam_variant_camera gtsam)
-
-add_executable(integrate_imu src/gtsam/integrate_imu.cpp)
-target_link_libraries(integrate_imu gtsam)
 
 add_executable(space src/space.cpp)
 target_link_libraries(space ${PCL_LIBRARIES})
