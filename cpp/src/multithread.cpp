@@ -73,5 +73,18 @@ int main(int argc, char **argv)
     t.join();
   }
 
+  // Attempting to join again to demonstrate error handling
+  try
+  {
+    for (auto &t : workers)
+    {
+      t.join();
+    } // ❌ ERROR: std::system_error
+  }
+  catch (const std::system_error &e)
+  {
+    std::cerr << "Second join failed: " << e.what() << '\n';
+  }
+
   return 0;
 }
