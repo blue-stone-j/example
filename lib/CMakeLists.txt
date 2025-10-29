@@ -43,6 +43,11 @@ target_link_libraries(compute_vector_rotation ${PCL_LIBRARIES})
 add_executable(eigen_base src/eigen/eigen_base.cpp)
 target_include_directories(eigen_base PUBLIC ${EIGEN3_INCLUDE_DIRS})
 
+### opencv ###
+add_executable(opencv_rotate src/opencv/rotate.cpp)
+target_include_directories(opencv_rotate PUBLIC ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(opencv_rotate ${OpenCV_LIBRARIES})
+
 ### pcl ###
 add_executable(pcl_calculate_normal_using_octree src/pcl/pcl_calculate_normal_using_octree.cpp)
 target_link_libraries(pcl_calculate_normal_using_octree ${PCL_LIBRARIES})
