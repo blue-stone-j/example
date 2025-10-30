@@ -37,6 +37,7 @@ int main()
 {
   { // std::cin: one input ends by space, table or enter
 
+    // cout
     if (0)
     {
       std::cerr << "Immediate error output\n";
@@ -52,6 +53,8 @@ int main()
       // \033[2K → clear the whole current line.
       // \033[31m → set red color.
       // \033[0m → reset to default color.
+
+      // uint8_t must be converted to int when using cout
     }
 
     if (0)

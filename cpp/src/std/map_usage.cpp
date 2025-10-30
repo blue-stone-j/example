@@ -3,6 +3,7 @@
 struct Inner
 {
   explicit Inner(int){};
+  // copyable and movable
 };
 struct OtherType
 {
@@ -41,7 +42,32 @@ int main(int argc, char **argv)
     map.insert(std::make_pair(key, std::move(value))); // OK if you let types deduce
   }
 
-  {
+  { // look for elements
+    std::map<int, std::string> map;
+    map[1] = "10";
+
+    // find: returns an iterator, or map.end() if not found
+    auto it = map.find(1);
+    if (it != map.end())
+    {
+      auto &element = it->second;
+    }
+
+    // at: an exception will be thrown if the key does not exist
+    try
+    {
+      auto &element = map.at(1);
+    }
+    catch (const std::out_of_range &e)
+    {
+      // handle missing key
+    }
+
+    // []: constructs a default value if the key does not exist
+    auto &element = map[1]; // element is a reference to the value at key 1
+  }
+
+  { // construct and insert complex types
     std::map<int, OtherType> map;
 
     int key = 1;
